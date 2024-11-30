@@ -4,7 +4,7 @@
 - 💞️ I’m looking to collaborate on samp server or samp community 
 - 📫 How to reach me email me at ucpevader@gmail.com
 - 😄 Pronouns: Justk
-- ⚡ Fun fact: im an asian lol
+- ⚡ Fun fact: im an asian mfs
 
 <!---
 justklol/justklol is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.

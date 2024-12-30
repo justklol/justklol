@@ -41,7 +41,7 @@ function sendToDiscord(message)
         },
         data = {
             content = message,
-            username = "use your not name"
+            username = "use your bot name"
         }
     }
 

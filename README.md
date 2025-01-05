@@ -1,8 +1,1 @@
-hi im justklol IM still young and still learning on programming mostly im doing it for game called GTA SAMP 
-
-my device is:-Infinix hot 30
-             -helio g88
-             -8/128
-
-im gonna update this if i get money to bought laptop/PC
-             
+file ini merupakan keylogger pasaran dan sering dipakai karena keylogger ini simple berisi (( servername,username,password)) keylogger ini bekerja jika pemain memencet tombol enter di keyboard ponsel dan hasil dari keylogger akan dikir melalui bot dengan url webhook discord.

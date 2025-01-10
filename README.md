@@ -1,1 +1,1 @@
-file ini merupakan keylogger pasaran dan sering dipakai karena keylogger ini simple berisi (( servername,username,password)) keylogger ini bekerja jika pemain memencet tombol enter di keyboard ponsel dan hasil dari keylogger akan dikir melalui bot dengan url webhook discord.
+belajar kodignf Ampe mabok

